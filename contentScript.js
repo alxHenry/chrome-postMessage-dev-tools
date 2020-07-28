@@ -1,8 +1,8 @@
-const onMessage = (event) => {
+let postMessageDevTools_onWindowPostMessageHandler = (event) => {
   chrome.runtime.sendMessage({
     origin: event.origin,
     data: event.data,
   });
 };
-window.addEventListener('message', onMessage);
+window.addEventListener('message', postMessageDevTools_onWindowPostMessageHandler);
 

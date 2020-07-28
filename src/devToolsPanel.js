@@ -1,19 +1,23 @@
-const backgroundPageConnection = chrome.runtime.connect({ name: "devToolsPanel" });
+const headerRowId = "header-row";
 const isDarkTheme = chrome.devtools.panels.themeName === "dark";
+const themeClassName = isDarkTheme ? "dark" : "default";
+
+const setHeaderRowColor = () => {
+  const headerRow = document.querySelector('#header-row');
+  headerRow.className = themeClassName;
+}
 
 const addTableRow = (origin, data) => {
-  const themeClassName = isDarkTheme ? "dark" : "default";
-
   try {
-    const tableBody = document.querySelector('#post-message-table-body');
-    const headerRow = document.querySelector('#header-row');
-    headerRow.className = themeClassName;
+    setHeaderRowColor();
 
+    const tableBody = document.querySelector('#post-message-table-body');
     const row = document.createElement('tr');
+    row.className = themeClassName;
+
     const originCell = document.createElement('td');
     const dataCell = document.createElement('td');
 
-    row.className = themeClassName;
     originCell.innerText = origin;
     dataCell.innerText = JSON.stringify(data);
 
@@ -21,9 +25,19 @@ const addTableRow = (origin, data) => {
     row.appendChild(dataCell);
     tableBody.appendChild(row);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
+
+const resetUi = () => {
+  const tableBody = document.querySelector('#post-message-table-body');
+  while (tableBody.firstChild && tableBody.firstChild.id !== headerRowId) {
+    tableBody.removeChild(tableBody.firstChild);
+  }
+};
+
+// Init
+const backgroundPageConnection = chrome.runtime.connect({ name: "devToolsPanel" });
 
 backgroundPageConnection.onMessage.addListener((message) => {
   addTableRow(message.origin, message.data);
