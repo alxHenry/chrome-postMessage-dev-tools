@@ -1,8 +1,6 @@
 const connections = {};
 
 const contentScriptMessageRelayToDevTools = (message, sender) => {
-  debugger;
-
   const fromContentScript = !!sender.tab;
   if (!fromContentScript) {
     return;
@@ -20,7 +18,6 @@ chrome.runtime.onMessage.addListener(contentScriptMessageRelayToDevTools);
 chrome.runtime.onConnect.addListener((devToolsConnection) => {
   const devToolsMessageListener = (message) => {
     if (message.type === "init") {
-      debugger;
       chrome.tabs.executeScript(message.tabId, { file: message.scriptToInject });
       connections[message.tabId] = devToolsConnection;
     }

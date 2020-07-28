@@ -1,7 +1,8 @@
 const onMessage = (event) => {
-  console.log('Message received!', event);
-  chrome.runtime.sendMessage(event);
+  chrome.runtime.sendMessage({
+    origin: event.origin,
+    data: event.data,
+  });
 };
 window.addEventListener('message', onMessage);
 
-console.log('Conent script injected!');
