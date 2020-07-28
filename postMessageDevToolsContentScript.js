@@ -1,4 +1,4 @@
-const isValidChromeRuntime = () => {
+let isValidChromeRuntime = () => {
   try {
     return chrome.runtime && !!chrome.runtime.getManifest();
   } catch (_err) {
@@ -13,12 +13,10 @@ let postMessageDevTools_onWindowPostMessageHandler = (event) => {
       origin: event.origin,
       data: event.data,
     });
-  } else {
-    debugger;
   }
 };
 
-const main = () => {
+let main = () => {
   window.addEventListener('message', postMessageDevTools_onWindowPostMessageHandler);
 }
 
