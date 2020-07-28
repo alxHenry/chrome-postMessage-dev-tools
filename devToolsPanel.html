@@ -16,18 +16,24 @@
             padding: 8px;
           }
 
-          tr:nth-child(even) {
-            background-color: #dddddd;
+          /* Theme specific */
+          tr.dark {
+            color: #dddddd;
+          }
+          tr.default {
+            color: #000000;
           }
         </style>
     </head>
     <body>
       <div style="width: 100%; height: 100%" id="content-wrapper">
-        <table id="post-message-table">
-          <tr>
-            <th>Origin</th>
-            <th>Data</th>
-          </tr>
+        <table>
+          <tbody id="post-message-table-body">
+            <tr id="header-row">
+              <th>Origin</th>
+              <th>Data</th>
+            </tr>
+          </tbody>
         </table>
       </div>
     </body>

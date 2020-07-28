@@ -1,19 +1,25 @@
 const backgroundPageConnection = chrome.runtime.connect({ name: "devToolsPanel" });
+const isDarkTheme = chrome.devtools.panels.themeName === "dark";
 
 const addTableRow = (origin, data) => {
+  const themeClassName = isDarkTheme ? "dark" : "default";
+
   try {
-    const table = document.querySelector('#post-message-table');
+    const tableBody = document.querySelector('#post-message-table-body');
+    const headerRow = document.querySelector('#header-row');
+    headerRow.className = themeClassName;
 
     const row = document.createElement('tr');
     const originCell = document.createElement('td');
     const dataCell = document.createElement('td');
 
+    row.className = themeClassName;
     originCell.innerText = origin;
     dataCell.innerText = JSON.stringify(data);
 
     row.appendChild(originCell);
     row.appendChild(dataCell);
-    table.appendChild(row);
+    tableBody.appendChild(row);
   } catch (err) {
     console.log(err);
   }
