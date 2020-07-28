@@ -10,7 +10,7 @@ const contentScriptMessageRelayToDevTools = (message, sender) => {
   if (tabId in connections) {
     connections[tabId].postMessage(message);
   } else {
-    console.error("Tab not found in connection list:", sender);
+    console.log("Tab not found in connection list:", sender);
   }
 }
 chrome.runtime.onMessage.addListener(contentScriptMessageRelayToDevTools);
