@@ -1,17 +1,44 @@
-debugger;
-chrome.runtime.onConnect.addListener(function(devToolsConnection) {
-  // assign the listener function to a variable so we can remove it later
-  debugger;
-  var devToolsListener = function(message, sender, sendResponse) {
-    debugger;
-    // Inject a content script into the identified tab
-    chrome.tabs.executeScript(message.tabId,
-        { file: message.scriptToInject });
-  }
-  // add the listener
-  devToolsConnection.onMessage.addListener(devToolsListener);
+const connections = {};
 
-  devToolsConnection.onDisconnect.addListener(function() {
-    devToolsConnection.onMessage.removeListener(devToolsListener);
-  });
+const contentScriptMessageRelayToDevTools = (message, sender) => {
+  debugger;
+
+  const fromContentScript = !!sender.tab;
+  if (!fromContentScript) {
+    return;
+  }
+
+  const tabId = sender.tab.id;
+  if (tabId in connections) {
+    connections[tabId].postMessage(message);
+  } else {
+    console.error("Tab not found in connection list.", tabId);
+  }
+}
+chrome.runtime.onMessage.addListener(contentScriptMessageRelayToDevTools);
+
+chrome.runtime.onConnect.addListener((devToolsConnection) => {
+  const devToolsMessageListener = (message) => {
+    if (message.type === "init") {
+      debugger;
+      chrome.tabs.executeScript(message.tabId, { file: message.scriptToInject });
+      connections[message.tabId] = devToolsConnection;
+    }
+  }
+  devToolsConnection.onMessage.addListener(devToolsMessageListener);
+
+  const cleanupDevToolsMessageListener = (disconnectingConnection) => {
+    devToolsConnection.onMessage.removeListener(devToolsMessageListener);
+
+    const tabIds = Object.keys(connections);
+    const connectionsLength = tabIds.length;
+    for (let i = 0; i < connectionsLength; i++) {
+      const tabId = tabIds[i];
+      if (connections[tabId] === disconnectingConnection) {
+        delete connections[tabId];
+        return;
+      }
+    }
+  }
+  devToolsConnection.onDisconnect.addListener(cleanupDevToolsMessageListener);
 });

@@ -1,6 +1,6 @@
 chrome.devtools.panels.create("Post Messages",
     "../assets/chat.png",
-    "../panel.html",
+    "../devToolsPanel.html",
     function(panel) {
       // code invoked on panel creation
     }
