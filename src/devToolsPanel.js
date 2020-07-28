@@ -29,13 +29,6 @@ const addTableRow = (origin, data) => {
   }
 };
 
-const resetUi = () => {
-  const tableBody = document.querySelector('#post-message-table-body');
-  while (tableBody.firstChild && tableBody.firstChild.id !== headerRowId) {
-    tableBody.removeChild(tableBody.firstChild);
-  }
-};
-
 // Init
 const backgroundPageConnection = chrome.runtime.connect({ name: "devToolsPanel" });
 
@@ -46,5 +39,5 @@ backgroundPageConnection.onMessage.addListener((message) => {
 backgroundPageConnection.postMessage({
   type: "init",
   tabId: chrome.devtools.inspectedWindow.tabId,
-  scriptToInject: "contentScript.js",
+  scriptToInject: "postMessageDevToolsContentScript.js",
 });
