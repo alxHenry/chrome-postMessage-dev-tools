@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "postMessage Dev Tools",
+  "version": "1.0.0",
+  "description": "Provides a panel to view postMessages on the current page",
+  "devtools_page": "./bootstrap.html",
+  "background": {
+    "scripts": ["./src/background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "<all_urls>"
+  ]
+}
