@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "postMessage Dev Tools",
+  "name": "postMessage Developer Tools",
   "version": "1.0.0",
-  "description": "Provides a panel to view postMessages on the current page",
+  "description": "Provides a dev tools panel to view postMessages for the current page",
   "devtools_page": "./bootstrap.html",
   "icons": {
     "16": "chat-16.png",
