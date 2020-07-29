@@ -9,8 +9,6 @@ const setHeaderRowColor = () => {
 
 const addTableRow = (origin, data) => {
   try {
-    setHeaderRowColor();
-
     const tableBody = document.querySelector('#post-message-table-body');
     const row = document.createElement('tr');
     row.className = themeClassName;
@@ -28,6 +26,10 @@ const addTableRow = (origin, data) => {
     console.error(err);
   }
 };
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  setHeaderRowColor();
+});
 
 // Init
 const backgroundPageConnection = chrome.runtime.connect({ name: "devToolsPanel" });
