@@ -1,4 +1,4 @@
 chrome.devtools.panels.create("Post Messages",
-    "chat.png",
+    "chat-128.png",
     "../devToolsPanel.html",
 );

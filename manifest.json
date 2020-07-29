@@ -4,6 +4,12 @@
   "version": "1.0.0",
   "description": "Provides a panel to view postMessages on the current page",
   "devtools_page": "./bootstrap.html",
+  "icons": {
+    "16": "chat-16.png",
+    "32": "chat-32.png",
+    "48": "chat-48.png",
+    "128": "chat-128.png"
+  },
   "background": {
     "scripts": ["./src/background.js"],
     "persistent": false
