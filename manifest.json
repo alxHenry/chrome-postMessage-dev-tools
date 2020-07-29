@@ -22,10 +22,5 @@
       ],
       "js": ["postMessageDevToolsContentScript.js"]
     }
-  ],
-  "permissions": [
-    "tabs",
-    "http://*/*",
-    "https://*/*"
   ]
 }
