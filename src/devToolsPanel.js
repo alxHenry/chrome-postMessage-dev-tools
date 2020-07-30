@@ -31,6 +31,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   setHeaderRowColor();
 });
 
+const sendInjectContentScriptMessage = () => {
+  backgroundPageConnection.postMessage({
+    type: "init",
+    tabId: chrome.devtools.inspectedWindow.tabId,
+    scriptToInject: "postMessageDevToolsContentScript.js",
+  });
+};
+
 // Init
 const backgroundPageConnection = chrome.runtime.connect({ name: "devToolsPanel" });
 
@@ -38,8 +46,10 @@ backgroundPageConnection.onMessage.addListener((message) => {
   addTableRow(message.origin, message.data);
 });
 
-backgroundPageConnection.postMessage({
-  type: "init",
-  tabId: chrome.devtools.inspectedWindow.tabId,
-  scriptToInject: "postMessageDevToolsContentScript.js",
+sendInjectContentScriptMessage();
+
+chrome.tabs.onUpdated.addListener((_tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.active) {
+    sendInjectContentScriptMessage();
+  }
 });

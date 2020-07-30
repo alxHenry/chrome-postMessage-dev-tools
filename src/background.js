@@ -18,6 +18,8 @@ chrome.runtime.onMessage.addListener(contentScriptMessageRelayToDevTools);
 chrome.runtime.onConnect.addListener((devToolsConnection) => {
   const devToolsMessageListener = (message) => {
     if (message.type === "init") {
+      chrome.tabs.executeScript(message.tabId, { file: message.scriptToInject });
+
       connections[message.tabId] = devToolsConnection;
     }
   }

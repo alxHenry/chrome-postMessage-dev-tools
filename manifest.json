@@ -14,13 +14,8 @@
     "scripts": ["./src/background.js"],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": ["postMessageDevToolsContentScript.js"]
-    }
+  "permissions": [
+    "http://*/*",
+    "https://*/*"
   ]
 }
