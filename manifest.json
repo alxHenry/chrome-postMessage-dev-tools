@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "postMessage Developer Tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides a dev tools panel to view postMessages for the current page",
   "devtools_page": "./bootstrap.html",
   "icons": {
