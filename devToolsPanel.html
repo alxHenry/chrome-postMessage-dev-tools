@@ -1,70 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <script src="./src/devToolsPanel.js"></script>
-        <style>
-          .controll-bar {
-              height: 40px;
-              line-height: 40px;
-          }
-          .table-wrapper {
-            width: 100%;
-            height: calc(100vh - 60px);
-            position: relative;
-            overflow-y: auto;
-          }
-          table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 98%;
-            border: 1px solid #dddddd;
-          }
-          td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-          }
-          tr td:first-child, tr th:first-child {
-              border-left: 0;
-          }
-          tr td:last-child, tr th:last-child {
-              border-right: 0;
-          }
-          thead th {
-              position: sticky;
-              top: 0;
-              background-color: #eeeeee;
-          }
-          /* Theme specific */
-          thead tr.dark th {
-            color: #dddddd;
-            background-color: #272727;
-          }
-          thead tr.default th {
-            color: #000000;
-          }
-
-
-        </style>
-    </head>
-    <body>
-      <div class="controll-bar">
-        <button class="controll-bar__item" id="clear-content">
-            clear
-        </button>
-      </div>
-      <div id="content-wrapper" class="table-wrapper">
-        <table>
-          <thead>
-              <tr id="header-row">
-                <th>Origin</th>
-                <th>Data</th>
-              </tr>
-          </thead>
-          <tbody id="post-message-table-body">
-          </tbody>
-        </table>
-      </div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <script src="./src/devToolsPanel.js"></script>
+    <style>
+      .controll-bar {
+        height: 40px;
+        line-height: 40px;
+      }
+      .table-wrapper {
+        width: 100%;
+        height: calc(100vh - 60px);
+        position: relative;
+        overflow-y: auto;
+      }
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 98%;
+        border: 1px solid #dddddd;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr td:first-child,
+      tr th:first-child {
+        border-left: 0;
+      }
+      tr td:last-child,
+      tr th:last-child {
+        border-right: 0;
+      }
+      thead th {
+        position: sticky;
+        top: 0;
+      }
+      /* Theme specific */
+      tr.dark {
+        color: #dddddd;
+      }
+      tr.default {
+        color: #000000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controll-bar">
+      <button class="controll-bar__item" id="clear-content">clear</button>
+    </div>
+    <div id="content-wrapper" class="table-wrapper">
+      <table>
+        <thead>
+          <tr id="header-row">
+            <th>Origin</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody id="post-message-table-body"></tbody>
+      </table>
+    </div>
+  </body>
 </html>
