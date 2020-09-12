@@ -7,6 +7,14 @@ const setHeaderRowColor = () => {
   headerRow.className = themeClassName;
 }
 
+const addControllBarAction = () => {
+    const clearBtn = document.querySelector('#clear-content')
+    const tableBody = document.querySelector('#post-message-table-body');
+    clearBtn.addEventListener('click', e => {
+        tableBody.innerHTML = ''
+    })
+}
+
 const addTableRow = (origin, data) => {
   try {
     const tableBody = document.querySelector('#post-message-table-body');
@@ -29,6 +37,7 @@ const addTableRow = (origin, data) => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   setHeaderRowColor();
+  addControllBarAction();
 });
 
 const sendInjectContentScriptMessage = () => {
