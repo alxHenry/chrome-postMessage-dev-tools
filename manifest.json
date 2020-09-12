@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "postMessage Developer Tools",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Provides a dev tools panel to view postMessages for the current page",
   "devtools_page": "./bootstrap.html",
   "icons": {
@@ -14,8 +14,5 @@
     "scripts": ["./src/background.js"],
     "persistent": false
   },
-  "permissions": [
-    "http://*/*",
-    "https://*/*"
-  ]
+  "permissions": ["http://*/*", "https://*/*"]
 }
